@@ -10,4 +10,4 @@ def emotion_detector(text_to_analyze):
     response_data = formatted_response['emotionPredictions'][0]['emotion']
     max_key = max(response_data, key=response_data.get)
     response_data['dominant_emotion'] = max_key
-    return json.dumps(response_data)
+    return response_data
