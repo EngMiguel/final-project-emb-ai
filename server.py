@@ -9,14 +9,18 @@ def em_detector():
     text_to_analyze = request.args.get('textToAnalyze')
     # Pass the text to the emotion_detector function and store the response
     response = emotion_detector(text_to_analyze)
-    return_text = (
-        f"For the given statement, the system response is 'anger': {response['anger']}"
-        f", 'disgust': {response['disgust']}"
-        f", 'fear': {response['fear']}"
-        f", 'joy': {response['joy']}"
-        f" and 'sadness': {response['sadness']}."
-        f"The dominant emotion is {response['dominant_emotion']}."
-    )
+
+    if response['dominant_emotion'] is None:
+        return "Invalid input! Try again."
+    else:
+        return_text = (
+            f"For the given statement, the system response is 'anger': {response['anger']}"
+            f", 'disgust': {response['disgust']}"
+            f", 'fear': {response['fear']}"
+            f", 'joy': {response['joy']}"
+            f" and 'sadness': {response['sadness']}."
+            f"The dominant emotion is {response['dominant_emotion']}."
+        )
     return return_text
 
 
